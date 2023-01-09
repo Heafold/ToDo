@@ -29,6 +29,19 @@ router.post('/',async (req, res) => {
     }
 });
 
+router.delete('/delete/:id', (req, res) => {
+    const { id } = req.params;
+    Value.findByIdAndDelete(id, (error, value) => {
+      if (error) {
+        res.status(500).json({ error });
+        console.log("Erreur")
+      } else {
+        res.json(value);
+        console.log("Donnée supprimée")
+      }
+    });
+  });
+
 
 
 module.exports = router;

@@ -8,11 +8,13 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static('js'));
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use('/', routes);
+app.use('/remove', routes);
 app.use(express.urlencoded({ extended: true }));
 
 mongoose.set('strictQuery', true);
