@@ -3,8 +3,15 @@ const router = express.Router();
 const Task = require("../models/Task");
 
 router.get('/', function(req, res) {
-    res.render('index')
+    Task.find({}, function(error, tasks) {
+        if (error) {
+          console.log(error);
+        } else {
+          res.render('index', { tasks: tasks});
+        }
+      });
 });
+
 
 router.post('/',async (req, res) => {
     const myTask = new Task({
