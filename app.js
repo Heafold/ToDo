@@ -14,7 +14,8 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use('/', routes);
-app.use('/remove', routes);
+app.use('/delete/;id', routes);
+app.use('/add', routes);
 app.use(express.urlencoded({ extended: true }));
 
 mongoose.set('strictQuery', true);

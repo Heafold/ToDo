@@ -49,6 +49,13 @@ router.delete('/delete/:id', (req, res) => {
       } else {
         res.json(value);
         console.log("Donnée supprimée")
+        Task.find({}, function(error, tasks) {
+            if (error) {
+              console.log(error);
+            } else {
+              res.render('index', { tasks: tasks});
+            }
+          });
       }
     });
   });

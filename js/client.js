@@ -9,7 +9,9 @@ document.querySelectorAll('.delete').forEach(button => {
     .then(response => {
       if (response.ok) {
         console.log("Données supprimée")
-        location.reload()
+        button.previousElementSibling.remove()
+        button.remove()
+
       } else {
         console.error('La suppression a échoué.');
       }
