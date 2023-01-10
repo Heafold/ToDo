@@ -10,8 +10,8 @@ html
       button(type="submit") Ajouter
     each task in tasks
       p #{task.content}
-      button.delete(type='button', dataId=task._id) Supprimer
+      button.delete(type='button', data-id=task._id) Supprimer
 
-    script(type="text/javascript", src="../js/client.js") 
+    script(type="text/javascript", src="client.js") 
 
     

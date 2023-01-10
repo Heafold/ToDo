@@ -19,11 +19,22 @@ router.post('/',async (req, res) => {
     });
     try {
         await myTask.save();
-        res.render('index');
-        console.log("yes")
+        Task.find({}, function(error, tasks) {
+            if (error) {
+              console.log(error);
+            } else {
+              res.render('index', { tasks: tasks});
+            }
+          });
     }
     catch (err){
-        res.render('index');
+        Task.find({}, function(error, tasks) {
+            if (error) {
+              console.log(error);
+            } else {
+              res.render('index', { tasks: tasks});
+            }
+          });
         console.log(err);
         console.log(req.body.content)
     }
@@ -31,7 +42,7 @@ router.post('/',async (req, res) => {
 
 router.delete('/delete/:id', (req, res) => {
     const { id } = req.params;
-    Value.findByIdAndDelete(id, (error, value) => {
+    Task.findByIdAndDelete(id, (error, value) => {
       if (error) {
         res.status(500).json({ error });
         console.log("Erreur")

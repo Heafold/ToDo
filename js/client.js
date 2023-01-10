@@ -1,24 +1,24 @@
-alert("ok")
+document.addEventListener('DOMContentLoaded', () => {
 
-$(document).ready(function () {
-        
-    $('.delete').click(async function (event) {
-        
-        try {
-            const dataId = $(this).data('dataId');
-            const response = await $.ajax({
-                url: `/remove/${dataId}`,
-                type: 'DELETE'
-            });
-            if (response.success) {
-                $(this).parent().remove();
-                console.log("ok");
-            } else {
-                alert(response.error);
-            }
-        } catch (error) {
-            console.error(error);
-            alert(error.message);
-        }
+document.querySelectorAll('.delete').forEach(button => {
+  button.addEventListener('click', event => {
+    const id = button.dataset.id;
+    fetch(`/delete/${id}`, {
+      method: 'DELETE'
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log("Données supprimée")
+        location.reload()
+      } else {
+        console.error('La suppression a échoué.');
+      }
+    })
+    .catch(error => {
+      console.error(error);
     });
+  });
+});
+
+
 });
