@@ -2,7 +2,7 @@ doctype html
 html
   head
     title ToDoList
-    link(rel='stylesheet', type="text/css" , href='style.css')
+    link(rel='stylesheet', type="text/css" , href='css/tailwind.css')
   body
     h1 ToDoList
 
@@ -10,7 +10,7 @@ html
       input(type="text", name="content")
       button(type="submit") Ajouter
     each task in tasks
-      p(class='text-red-500') #{task.content}
+      p.text-red-500 #{task.content}
       button.delete(type='button', data-id=task._id) Supprimer
 
     script(src="https://code.jquery.com/jquery-3.6.0.min.js")
